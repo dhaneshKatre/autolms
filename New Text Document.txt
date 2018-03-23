@@ -1,0 +1,7 @@
+		
+
+def readpercent():
+	links=driver.find_element_by_class_name('slice').click()
+	for item in driver.find_element_by_class_name('completed'):
+		item.click()  
+  
