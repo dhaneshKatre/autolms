@@ -15,7 +15,7 @@ for row in reader:
     user=row[0]
     passw=row[1]
 
-driver=wb.Chrome(r'''C:\Users\<Username>\Downloads\chromedriver.exe''')
+driver=wb.Chrome(r'''C:\Users\<usr_name>\Downloads\chromedriver.exe''')
 driver.maximize_window()
 page=driver.get("http://mydy.dypatil.edu/")
 wait = WebDriverWait(driver, 15)
@@ -25,6 +25,15 @@ driver.find_element_by_name("password").send_keys(passw)
 driver.find_element_by_id("loginbtn").send_keys(Keys.ENTER)
 original = driver.get
 
+
+
+def forumButton():
+    
+    driver.find_element_by_xpath("//*[@value='Add a new discussion topic']").send_keys(Keys.ENTER)
+    wait.until(EC.presence_of_element_located((By.ID ,"id_subject"))).send_keys('Why Django?')
+    wait.until(EC.presence_of_element_located((By.ID ,"id_messageeditable"))).send_keys('cause Django is best')
+
+    
 
 def openurl():
     for i in range(len(driver.window_handles)-1):
@@ -61,7 +70,7 @@ def readpercent():
 	for item in reversed(range(0, len(anchors))):
 		if anchors[item].is_displayed():
 			anchors[item].send_keys(Keys.CONTROL + Keys.ENTER)
-			time.sleep(0.5)
+			time.sleep(2)
         
   
     
