@@ -67,10 +67,13 @@ def openpage(te):
 def readpercent():
 	span=driver.find_element(By.XPATH, '//*[@id="inst50217"]/div[2]/a/div/span').click()
 	anchors = wait.until(EC.presence_of_all_elements_located((By.CLASS_NAME, 'pending')))
-	for item in reversed(range(0, len(anchors))):
+	for item in range(0, len(anchors)-1):
 		if anchors[item].is_displayed():
 			anchors[item].send_keys(Keys.CONTROL + Keys.ENTER)
 			time.sleep(2)
+		driver.switch_to_window(driver.window_handles[2])
+		driver.close()
+		driver.switch_to_window(driver.window_handles[1])
         
   
     
@@ -110,7 +113,7 @@ def readmaterial():
 def launch():
     links=driver.find_elements_by_class_name('launchbutton')
     for x in range(0,len(links)):
-        links[x+2].send_keys(Keys.CONTROL+Keys.ENTER)
+        links[x].send_keys(Keys.CONTROL+Keys.ENTER)
         driver.switch_to_window(driver.window_handles[1])
         visitedLinks.clear()
         readpercent()
